@@ -14,6 +14,7 @@
         #define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
     #else
         #include <stdio.h>
+        #include <stdarg.h>
         #define __LOG_MAX_SIZE 300
         static int __log(char * type, ...) {
             va_list ap;
@@ -25,9 +26,9 @@
             if (n > 0) return printf(type, temp);
             return 0;
         }
-        #define LOGI(...) __log("i:%s", __VA_ARGS__)
-        #define LOGE(...) __log("e:%s", __VA_ARGS__)
-        #define LOGW(...) __log("w:%s", __VA_ARGS__)
+        #define LOGI(...) __log("i:%s\n", __VA_ARGS__)
+        #define LOGE(...) __log("e:%s\n", __VA_ARGS__)
+        #define LOGW(...) __log("w:%s\n", __VA_ARGS__)
     #endif
 #else
 #define LOGI(...)

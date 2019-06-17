@@ -12,6 +12,7 @@
 * standard Lua read and write functions.
 \*=========================================================================*/
 
+#include "lauxlib.h"
 #include "luasocket.h"
 #include "auxiliar.h"
 #include "except.h"

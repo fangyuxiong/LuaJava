@@ -16,3 +16,4 @@ build/
 .vscode/
 objs/
 *.a
+*.o
