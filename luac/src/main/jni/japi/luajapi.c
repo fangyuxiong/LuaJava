@@ -181,8 +181,10 @@ jlong jni_createLState(JNIEnv *env, jobject jobj, jboolean debug)
     lua_lock(L);
     L->l_G->gc_callback = NULL;
     luaL_openlibs(L);
-    if (debug)
+    if (debug) {
         luaopen_socket_core(L);
+        lua_pop(L, 1);
+    }
     lua_pushcfunction(L, error_func_traceback);
     lua_setglobal(L, ERROR_FUN);
     lua_getglobal(L, ERROR_FUN);

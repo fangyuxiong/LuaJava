@@ -252,9 +252,11 @@ jobject jni_getTableValue(JNIEnv *env, jobject jobj, jlong L, jstring table, jin
     lua_pushinteger(LS, (lua_Integer)k);
     lua_rawget(LS, -2);
     lua_remove(LS, -2);
+    jobject ret = toJavaValue(env, LS, -1);
+    lua_pop(L, 1);
     lua_unlock(LS);
 
-    return toJavaValue(env, LS, -1);
+    return ret;
 }
 
 jobject jni_getTableSValue(JNIEnv *env, jobject jobj, jlong L, jstring table, jstring k)
@@ -276,9 +278,11 @@ jobject jni_getTableSValue(JNIEnv *env, jobject jobj, jlong L, jstring table, js
     }
     ReleaseChar(env, table, tk);
     ReleaseChar(env, k, key);
+    jobject ret = toJavaValue(env, LS, -1);
+    lua_pop(L, 1);
     lua_unlock(LS);
 
-    return toJavaValue(env, LS, -1);
+    return ret;
 }
 
 jboolean jni_startTraverseTable(JNIEnv *env, jobject jobj, jlong L, jstring table)

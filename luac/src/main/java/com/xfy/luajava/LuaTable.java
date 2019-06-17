@@ -308,11 +308,16 @@ public class LuaTable extends NLuaValue implements Iterable {
          */
         @LuaApiUsed
         private final LuaValue[] values;
+        /**
+         * 长度
+         */
+        private final int length;
 
         @LuaApiUsed
         private Entrys(LuaValue[] keys, LuaValue[] values) {
             this.keys = keys;
             this.values = values;
+            length = this.keys.length;
         }
 
         public LuaValue[] keys() {
@@ -321,6 +326,10 @@ public class LuaTable extends NLuaValue implements Iterable {
 
         public LuaValue[] values() {
             return values;
+        }
+
+        public int length() {
+            return length;
         }
 
         @Override
